@@ -1,0 +1,139 @@
+<!-- index.hbs -->
+<h1>Hero Ratings</h1>
+
+{{!-- Create a table --}}
+<table id="hero-ratings-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>ID</th>
+            <th>Customer</th>
+            <th>Hero</th>
+            <th>Stars</th>
+            <th>Date</th>
+            <th>Header</th>
+            <th>Comments</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{#each data}}
+        <tr>
+            <td>{{this.hero_rating_id}}</td>
+            <td>{{this.hero_rating_customer_id}}</td>
+            <td>{{hero_rating_hero_id}}</td>
+            <td>{{hero_rating_stars}}</td>
+            <td>{{formatDate this.hero_rating_date}}</td>
+            <td>{{hero_rating_header}}</td>
+            <td>{{hero_rating_comments}}</td>
+            <td><button onclick="deleteHeroRating({{this.hero_rating_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script type="application/javascript" src="./js/delete_hero_rating.js"></script>
+
+
+{{!-- Form to add a record to the table --}}
+<h2>Add a Hero Rating</h2>
+<p>To add a new rating, please enter the information below and click 'Submit'!</p>
+<form id="add-hero-rating-form-ajax">
+    <label for="hero_rating_customer_name_ajax">Customer Name: </label>
+    <select name="hero_rating_customer_name_ajax" id="hero_rating_customer_name_ajax">
+        <option value="0">Select a Customer</option>
+        {{#each customers}}
+        <option value="{{this.customer_id}}">{{this.customer_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="hero_rating_hero_name_ajax">Hero Name: </label>
+    <select name="hero_rating_hero_name_ajax" id="hero_rating_hero_name_ajax">
+        <option value="0">Select a Hero</option>
+        {{#each heroes}}
+        <option value="{{this.hero_id}}">{{this.hero_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="hero_rating_stars_ajax">Stars</label>
+    <select name="hero_rating_stars_ajax" id="hero_rating_stars_ajax">
+        <option value="5">5 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="2">2 Stars</option>
+        <option value="1">1 Star</option>
+    </select>
+
+    <label for="hero_rating_date_ajax">Date: </label>
+    <input type="date" name="hero_rating_date_ajax" id="hero_rating_date_ajax">
+
+    <label for="hero_rating_header_ajax">Header: </label>
+    <input type="text" name="hero_rating_header_ajax" id="hero_rating_header_ajax">
+
+    <label for="hero_rating_comments_ajax">Comments: </label>
+    <input type="text" name="hero_rating_comments_ajax" id="hero_rating_comments_ajax">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script type="application/javascript" src="./js/add_hero_rating.js"></script>
+
+
+<h2>Updating a Hero Rating</h2>
+<p>To update a specific rating, fill out the form below</p>
+<form id="update-hero-rating-form-ajax">
+
+    <label for="update_hero_rating_id">Rating ID: </label>
+    <select name="update_hero_rating_id" id="update_hero_rating_id">
+        <option value="test">Select a rating ID</option>
+        {{#each data}}
+        <option value="{{this.hero_rating_id}}">{{this.hero_rating_id}}</option>
+        {{/each}}
+    </select>
+
+    <label for="update_hero_rating_customer">Customer Name </label>
+    <select name="update_hero_rating_customer" id="update_hero_rating_customer">
+        <option value="test">Select a customer name</option>
+        {{#each customers}}
+        <option value="{{this.customer_id}}">{{this.customer_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="update_hero_rating_hero">Hero Name: </label>
+    <select name="update_hero_rating_hero" id="update_hero_rating_hero">
+        <option value="0">Select a Hero</option>
+        {{#each heroes}}
+        <option value="{{this.hero_id}}">{{this.hero_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="update_hero_rating_stars">Stars</label>
+    <select name="update_hero_rating_stars" id="update_hero_rating_stars">
+        <option value="5">5 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="2">2 Stars</option>
+        <option value="1">1 Star</option>
+    </select>
+
+    <label for="update_hero_rating_date">Date: </label>
+    <input type="date" name="update_hero_rating_date" id="update_hero_rating_date">
+
+    <label for="update_hero_rating_header">Header: </label>
+    <input type="text" name="update_hero_rating_header" id="update_hero_rating_header">
+
+    <label for="update_hero_rating_comments">Comments: </label>
+    <input type="text" name="update_hero_rating_comments" id="update_hero_rating_comments">
+
+    <input type="submit">
+
+</form>
+
+<script type="application/javascript" src="./js/update_hero_rating.js"></script>

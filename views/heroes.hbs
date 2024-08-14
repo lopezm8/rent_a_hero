@@ -1,0 +1,136 @@
+<!-- index.hbs -->
+<h1>Heroes</h1>
+
+{{!-- Create a table --}}
+<table id="heroes-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>ID</th>
+            <th>Hero Name</th>
+            <th>Superpower</th>
+            <th>Hourly Rate</th>
+            <th>State</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.hero_id}}</td>
+            <td>{{this.hero_name}}</td>
+            <td>{{this.hero_superpower}}</td>
+            <td>{{this.hero_hourly_rate}}</td>
+            <td>{{this.hero_state_id}}</td>
+            <td><button onclick="deleteHero({{this.hero_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script type="application/javascript" src="./js/delete_hero.js"></script>
+
+<!--
+{{!-- Form to add a record to the table --}}
+<h2>Add Hero HTML Form</h2>
+<p>To add a new hero, please enter their information below and click 'Submit'!</p>
+<form id="add-hero-form" method="POST" action="/add-hero-form">
+    <label for="hero_name">Hero Name: </label>
+    <input type="text" name="hero_name" id="hero_name">
+
+    <label for="hero_state">State: </label>
+    <select name="hero_state" id="hero_state">
+        <option value="0">Select a State</option>
+        {{#each states}}
+        <option value="{{this.state_id}}">{{this.state_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="hero_superpower">Superpower: </label>
+    <input type="text" name="hero_superpower" id="hero_superpower">
+
+    <label for="hero_hourly_rate">Hourly Rate: </label>
+    <input type="text" name="hero_hourly_rate" id="hero_hourly_rate">
+
+    <input type="submit">
+</form>
+-->
+
+
+{{!-- Form to add a record to the table --}}
+<h2>Add a Hero</h2>
+<p>To add a new hero, please enter their information below and click 'Submit'!</p>
+<form id="add-hero-form-ajax">
+    <label for="hero_name_ajax">Hero Name: </label>
+    <input type="text" name="hero_name_ajax" id="hero_name_ajax">
+
+    <label for="hero_state_ajax">State: </label>
+    <select name="hero_state_ajax" id="hero_state_ajax">
+        <option value="0">Select a State</option>
+        {{#each states}}
+        <option value="{{this.state_id}}">{{this.state_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="hero_superpower_ajax">Superpower: </label>
+    <input type="text" name="hero_superpower_ajax" id="hero_superpower_ajax">
+
+    <label for="hero_hourly_rate_ajax">Hourly Rate: </label>
+    <input type="text" name="hero_hourly_rate_ajax" id="hero_hourly_rate_ajax">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script type="application/javascript" src="./js/add_hero.js"></script>
+
+{{!-- Form to search for a Hero by name --}}
+<h2>Search for a Hero</h2>
+<p>To search for a hero, please enter the Hero name and click on "Submit".</p>
+<form id="search-hero-html" method='GET' action='/heroes'>
+    <label for="input-hero_name">Search by Hero Name: </label>
+    <input type="text" name="hero_name" id="input-hero_name-html-search">
+
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
+</form>
+
+
+<h2>Update A Hero</h2>
+<p>To update a specific hero, please fill out the form below.</p>
+<form id="update-hero-form-ajax">
+
+    <label for="update_hero_name">Hero name: </label>
+    <select name="update_hero_name" id="update_hero_name">
+        <option value="test">Select a Hero</option>
+        {{#each data}}
+        <option value="{{this.hero_id}}">{{this.hero_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="update_hero_state">State: </label>
+    <select name="update_hero_state" id="update_hero_state">
+        <option value="0">Select a State</option>
+        {{#each states}}
+        <option value="{{this.state_id}}">{{this.state_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="update_hero_superpower">Superpower: </label>
+    <input type="text" name="update_hero_superpower" id="update_hero_superpower">
+
+    <label for="update_hero_hourly_rate">Hourly Rate: </label>
+    <input type="text" name="update_hero_hourly_rate" id="update_hero_hourly_rate">
+
+    <input type="submit">
+
+</form>
+
+<script type="application/javascript" src="./js/update_hero.js"></script>

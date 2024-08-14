@@ -1,0 +1,42 @@
+<!-- index.hbs -->
+<h1>States</h1>
+
+{{!-- Create a table --}}
+<table id="states-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>ID</th>
+            <th>State</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.state_id}}</td>
+            <td>{{this.state_name}}</td>
+            <td><button onclick="deleteState({{this.state_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_state.js"></script>
+
+
+{{!-- Form to add a record to the table --}}
+<h2>Add a participating State</h2>
+<p>To add a new state, please enter the information below and click 'Submit'!</p>
+<form id="add-state-form" method="POST" action="/add-state-form">
+    <label for="state_name">State Name: </label>
+    <input type="text" name="state_name" id="state_name">
+    <input type="submit">
+</form>

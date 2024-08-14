@@ -1,0 +1,99 @@
+<!-- index.hbs -->
+<h1>Missions</h1>
+
+{{!-- Create a table --}}
+<table id="missions-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>ID</th>
+            <th>Mission Type</th>
+            <th>Description</th>
+            <th>Base Cost</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.mission_id}}</td>
+            <td>{{this.mission_type}}</td>
+            <td>{{this.mission_description}}</td>
+            <td>{{this.mission_base_cost}}</td>
+            <td><button onclick="deleteMission({{this.mission_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script type="application/javascript" src="./js/delete_mission.js"></script>
+
+<!--
+{{!-- Form to add a record to the table --}}
+<h2>Add Mission HTML Form</h2>
+<p>To add a new Mission, please enter the information below and click 'Submit'!</p>
+<form id="add-mission-form" method="POST" action="/add-mission-form">
+    <label for="mission_type">Mission Type: </label>
+    <input type="text" name="mission_type" id="mission_type">
+
+    <label for="mission_description">Mission Description: </label>
+    <input type="text" name="mission_description" id="mission_description">
+
+    <label for="mission_base_cost">Mission Base Cost: </label>
+    <input type="number" name="mission_base_cost" id="mission_base_cost">
+
+    <input type="submit">
+</form>
+-->
+
+{{!-- Form to add a record to the table --}}
+<h2>Add a Mission</h2>
+<p>To add a new mission, please enter the mission information below and click 'Submit'!</p>
+<form id="add-mission-form-ajax">
+    <label for="mission_type_ajax">Mission Type: </label>
+    <input type="text" name="mission_type_ajax" id="mission_type_ajax">
+
+    <label for="mission_description_ajax">Mission Description: </label>
+    <input type="text" name="mission_description_ajax" id="mission_description_ajax">
+
+    <label for="mission_base_cost_ajax">Mission Base Cost: </label>
+    <input type="number" name="mission_base_cost_ajax" id="mission_base_cost_ajax">
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script type="application/javascript" src="./js/add_mission.js"></script>
+
+<h2>Update a Mission</h2>
+<p>To update a specific mission, fill in the form below</p>
+<form id="update-mission-form-ajax">
+
+    <label for="update_mission_id_ajax">Mission ID: </label>
+    <select name="update_mission_id_ajax" id="update_mission_id_ajax">
+        <option value="test">Select a mission ID:</option>
+        {{#each data}}
+        <option value="{{this.mission_id}}">{{this.mission_id}}</option>
+        {{/each}}
+    </select>
+
+    <label for="update_mission_type_ajax">Mission Type: </label>
+    <input type="text" name="update_mission_type_ajax" id="update_mission_type_ajax">
+
+    <label for="update_mission_description_ajax">Mission Description: </label>
+    <input type="text" name="update_mission_description_ajax" id="update_mission_description_ajax">
+
+    <label for="update_mission_base_cost_ajax">Mission Base Cost: </label>
+    <input type="number" name="update_mission_base_cost_ajax" id="update_mission_base_cost_ajax">
+    <input type="submit">
+
+</form>
+
+<script type="application/javascript" src="./js/update_mission.js"></script>

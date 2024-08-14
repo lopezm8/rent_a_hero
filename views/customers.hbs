@@ -1,0 +1,124 @@
+<!-- index.hbs -->
+<h1>Customers</h1>
+
+{{!-- Create a table --}}
+<table id="customers-table">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th>ID</th>
+            <th>Customer Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>State</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.customer_name}}</td>
+            <td>{{this.customer_phone_number}}</td>
+            <td>{{this.customer_email}}</td>
+            <td>{{this.customer_state_id}}</td>
+            <td><button onclick="deleteCustomer({{this.customer_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script type="application/javascript" src="./js/delete_customer.js"></script>
+
+<!--
+{{!-- Form to add a record to the table --}}
+<h2>Add Customer</h2>
+<p>To add a new customer, please enter their information below and click 'Submit'!</p>
+<form id="add-customer-form" method="POST" action="/add-customer-form">
+    <label for="customer_name">Customer Name: </label>
+    <input type="text" name="customer_name" id="customer_name">
+
+    <label for="customer_phone_number">Phone Number: </label>
+    <input type="text" name="customer_phone_number" id="customer_phone_number">
+
+    <label for="customer_email">Email: </label>
+    <input type="text" name="customer_email" id="customer_email">
+
+    <label for="customer_state">State: </label>
+    <select name="customer_state" id="customer_state">
+        <option value="0">Select a State</option>
+        {{#each states}}
+        <option value="{{this.state_id}}">{{this.state_name}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+</form>
+-->
+
+{{!-- Form to add a record to the table --}}
+<h2>Adding a Customer</h2>
+<p>To add a new customer, please enter their information below and click 'Submit'!</p>
+<form id="add-customer-form-ajax">
+    <label for="customer_name_ajax">Customer Name: </label>
+    <input type="text" name="customer_name_ajax" id="customer_name_ajax">
+
+    <label for="customer_phone_number_ajax">Phone Number: </label>
+    <input type="text" name="customer_phone_number_ajax" id="customer_phone_number_ajax">
+
+    <label for="customer_email_ajax">Email: </label>
+    <input type="text" name="customer_email_ajax" id="customer_email_ajax">
+
+    <label for="customer_state_ajax">State: </label>
+    <select name="customer_state_ajax" id="customer_state_ajax">
+        <option value="0">Select a State</option>
+        {{#each states}}
+        <option value="{{this.state_id}}">{{this.state_name}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script type="application/javascript" src="./js/add_customer.js"></script>
+
+
+<h2>Update a Customer</h2>
+<p>To update a specific customer, fill out the form below.</p>
+<form id="update-customer-form-ajax">
+
+    <label for="update_customer_name">Customer name: </label>
+    <select name="update_customer_name" id="update_customer_name">
+        <option value="test">Select a customer name</option>
+        {{#each data}}
+        <option value="{{this.customer_id}}">{{this.customer_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="update_customer_phone_number">Phone Number: </label>
+    <input type="text" name="update_customer_phone_number" id="update_customer_phone_number">
+
+    <label for="update_customer_email">Email: </label>
+    <input type="text" name="update_customer_email" id="update_customer_email">
+
+    <label for="update_customer_state">State: </label>
+    <select name="update_customer_state" id="update_customer_state">
+        <option value="0">Select a State</option>
+        {{#each states}}
+        <option value="{{this.state_id}}">{{this.state_name}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+
+</form>
+
+<script type="application/javascript" src="./js/update_customer.js"></script>
